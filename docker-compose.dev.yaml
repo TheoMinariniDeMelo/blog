@@ -2,14 +2,14 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: £U067qbAy3Q`
-      ACCEPT_EULA: Y
+      SA_PASSWORD: "J:OPDbr4*Oce" 
+      ACCEPT_EULA: "Y"
     networks:
-      sqlnet:
+      - sqlnet
     ports:
       - "1433:1433"
     healthcheck:
-      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "£U067qbAy3Q`", "-Q", "SELECT 1" ]
+      test: [ "CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "SA", "-P", "J:OPDbr4*Oce", "-Q", "SELECT 1", "-C" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -26,3 +26,4 @@ services:
 
 networks:
   sqlnet:
+    driver: bridge
